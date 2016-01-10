@@ -7,6 +7,7 @@ This repository contains library sources, examples of using it and also short "G
 
 ## License
 http://underdark.io/LICENSE.txt
+
 Underdark Android is published under the Underdark License, which is modified Apache 2.0 license with added requirement that applications that use the library must add to their app store description the following line: "Mesh networking by http://underdark.io"
 
 ## Demo apps
