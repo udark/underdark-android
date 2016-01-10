@@ -1,0 +1,49 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.5.0'
+        classpath 'org.robolectric:robolectric-gradle-plugin:1.1.0'
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.5"
+
+        //classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:0.11.91.4'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+// Bintray bugs: https://github.com/bintray/gradle-bintray-plugin/issues/74
+// Only our subprojects have a bintray configuration. replace the root project's
+// `bintrayUpload` task with one that restricts the calls to the subprojects.
+project.afterEvaluate {
+    task bintrayUpload(group: "publishing", overwrite: true) {
+        Project proj = subprojects.find { subproj -> subproj.name.equals("underdark")}
+        dependsOn proj.bintrayUpload
+    }
+}
+
+allprojects { thisProject ->
+
+    if(thisProject.name.equals("underdark"))
+    {
+        apply plugin: 'com.jfrog.bintray'
+    } // if
+
+    repositories {
+        jcenter()
+    }
+
+    apply plugin: 'idea'
+
+    idea {
+        module {
+            downloadJavadoc = true
+            downloadSources = true
+        }
+    }
+}
+

@@ -1,0 +1,3 @@
+include ':underdark', ':udapp'
+
+project(':underdark').projectDir = new File('underdark')
