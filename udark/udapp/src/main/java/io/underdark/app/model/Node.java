@@ -43,7 +43,7 @@ public class Node implements TransportListener
 
 		EnumSet<TransportKind> kinds = EnumSet.of(TransportKind.BLUETOOTH, TransportKind.WIFI);
 		//kinds = EnumSet.of(TransportKind.WIFI);
-		kinds = EnumSet.of(TransportKind.BLUETOOTH);
+		//kinds = EnumSet.of(TransportKind.BLUETOOTH);
 
 		this.transport = Underdark.configureTransport(
 				234235,
