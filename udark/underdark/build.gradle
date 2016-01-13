@@ -4,8 +4,8 @@ apply plugin: "maven-publish"
 
 def ud_artifact = 'underdark'
 def ud_group = 'io.underdark'
-def ud_version = '1.0.8'
-def ud_versionCode = 7
+def ud_version = '1.0.9'
+def ud_versionCode = 8
 
 project.version = ud_version
 project.group = ud_group

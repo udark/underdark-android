@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import impl.underdark.licensing.Licenser;
 import io.underdark.transport.Link;
 import io.underdark.transport.Transport;
 import io.underdark.transport.TransportListener;
@@ -34,8 +33,6 @@ import impl.underdark.logging.Logger;
 public class AggTransport implements Transport, TransportListener
 {
 	private boolean running;
-
-	private Licenser licenser;
 
 	private long nodeId;
 	private TransportListener listener;
@@ -59,12 +56,6 @@ public class AggTransport implements Transport, TransportListener
 		this.context = context.getApplicationContext();
 
 		this.queue = new DispatchQueue();
-		this.licenser = new Licenser(context.getApplicationContext());
-	}
-
-	public void setLicense(String license)
-	{
-		licenser.setLicense(license);
 	}
 
 	public void addTransport(Transport transport)
@@ -81,8 +72,6 @@ public class AggTransport implements Transport, TransportListener
 			return;
 
 		running = true;
-
-		licenser.checkLicense();
 
 		queue.dispatch(new Runnable()
 		{
@@ -204,8 +193,6 @@ public class AggTransport implements Transport, TransportListener
 	public void transportLinkConnected(Transport transport, Link link)
 	{
 		// Transport queue.
-
-		licenser.checkLicense();
 
 		AggLink aggregate = linksConnected.get(link.getNodeId());
 		boolean linkExisted = (aggregate != null && !aggregate.isEmpty());

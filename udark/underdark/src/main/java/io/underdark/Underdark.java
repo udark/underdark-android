@@ -31,8 +31,6 @@ import impl.underdark.transport.bluetooth.BtTransport;
 
 public class Underdark
 {
-	private static String license = null;
-
 	private Underdark()
 	{
 	}
@@ -40,11 +38,6 @@ public class Underdark
 	public static void configureLogging(boolean enabled)
 	{
 		Logger.setEnabled(enabled);
-	}
-
-	public static void setLicense(String nlicense)
-	{
-		Underdark.license = nlicense;
 	}
 
 	/**
@@ -75,7 +68,6 @@ public class Underdark
 			appId = -appId;
 
 		AggTransport transport = new AggTransport(nodeId, listener, handler, context);
-		transport.setLicense(Underdark.license);
 
 		if(transportKinds.contains(TransportKind.WIFI))
 		{
