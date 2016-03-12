@@ -34,8 +34,8 @@ android {
     // http://stackoverflow.com/a/24910671/1449965
     //publishNonDefault true
 
-    //defaultPublishConfig "debug"
-    defaultPublishConfig "release"
+    defaultPublishConfig "debug"
+    //defaultPublishConfig "release"
 
     defaultConfig {
         minSdkVersion 16
@@ -49,8 +49,8 @@ android {
         }
         release {
             buildConfigField "Boolean", "DEBUG_MY", "false"
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            //minifyEnabled true
+            //proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
