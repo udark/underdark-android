@@ -83,13 +83,23 @@ public class MainActivity extends AppCompatActivity
 			return;
 		}*/
 
-		for(int i = 0; i < 100; ++i)
+		node.broadcastFrame(new byte[1]);
+
+		for(int i = 0; i < 2000; ++i)
 		{
 			byte[] frameData = new byte[1024];
 			new Random().nextBytes(frameData);
 
 			node.broadcastFrame(frameData);
 		}
+
+		/*for(int i = 0; i < 100; ++i)
+		{
+			byte[] frameData = new byte[100 * 1024];
+			new Random().nextBytes(frameData);
+
+			node.broadcastFrame(frameData);
+		}*/
 	}
 
 	public void refreshPeers()
