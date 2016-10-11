@@ -43,7 +43,7 @@ public class AggTransport implements Transport, TransportListener
 	private List<Transport> transports = new ArrayList<>();
 	private HashMap<Long, AggLink> linksConnected = new HashMap<>();
 
-	private boolean foreground;
+	private boolean foreground = true;
 
 	public AggTransport(long nodeId,
 						TransportListener listener,
@@ -78,6 +78,8 @@ public class AggTransport implements Transport, TransportListener
 			@Override
 			public void run()
 			{
+				foreground = true;
+
 				for (Transport transport : transports)
 				{
 					transport.start();
@@ -114,63 +116,11 @@ public class AggTransport implements Transport, TransportListener
 	@Override
 	public void onMainActivityResumed()
 	{
-		// Any thread.
-		queue.dispatch(new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				foreground = true;
-			}
-		});
-
-		queue.dispatch(new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				if(!running)
-					return;
-
-				Logger.debug("agg foreground");
-
-				for (Transport transport : transports)
-				{
-					transport.onMainActivityResumed();
-				}
-			}
-		});
 	}
 
 	@Override
 	public void onMainActivityPaused()
 	{
-		// Any thread.
-		queue.dispatch(new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				foreground = false;
-			}
-		});
-
-		queue.dispatch(new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				if(!running)
-					return;
-
-				Logger.debug("agg background");
-
-				for (Transport transport : transports)
-				{
-					transport.onMainActivityPaused();
-				}
-			}
-		});
 	}
 
 	//endregion

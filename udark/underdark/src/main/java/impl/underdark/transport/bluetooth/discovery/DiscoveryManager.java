@@ -52,7 +52,7 @@ public class DiscoveryManager implements Scanner.Listener, Advertiser.Listener
 	private Advertiser bleAdvertiser;
 
 	private State state;
-	private boolean foreground = false;
+	private boolean foreground = true;
 
 	public DiscoveryManager(
 			BtTransport transport,
