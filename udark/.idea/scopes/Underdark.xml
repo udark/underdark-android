@@ -1,3 +1,0 @@
-<component name="DependencyValidationManager">
-  <scope name="Underdark" pattern="src[underdark]:io.underdark..*||src[underdark]:impl.underdark..*" />
-</component>
